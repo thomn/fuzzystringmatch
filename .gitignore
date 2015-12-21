@@ -1,0 +1,4 @@
+data/*.txt
+data/*.csv
+.idea
+node_modules
