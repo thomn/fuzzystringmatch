@@ -1,10 +1,45 @@
 var expect = require('chai').expect
 
+var Subject = require('../lib/Subject')
+var ResultEntry = require('../lib/ResultEntry')
 var identBuilder = require('../lib/tools/identBuilder')
 var splitter = require('../lib/tools/splitter')
 var prepareTerm = require('../lib/tools/prepareTerm')
 var dedupeStream = require('../lib/streams/dedupeStream')
 var cutStream = require('../lib/tools/cutstream')
+
+describe('models', () => {
+    describe('subject', () => {
+        var s;
+        before(() => {
+            s = new Subject('fooTerm')
+
+            s.addChunk('fooChunk')
+            s.addChunk('barChunk')
+        })
+
+        it('should return the term', () => expect(s.getTerm()).to.equal('fooTerm'))
+        it('should return the chunks', () => expect(s.getChunks()).to.deep.equal(['fooChunk', 'barChunk']))
+    })
+
+    describe('resultentry', () => {
+        var s, e;
+        before(() => {
+            s = new Subject('fooTerm')
+
+            s.addChunk('fooChunk')
+            s.addChunk('barChunk')
+            s.addChunk('spamChunk')
+            s.addChunk('cheeseChunk')
+
+            e = new ResultEntry(s, 2)
+        })
+
+        it('should return the subject', () => expect(e.getSubject()).to.equal(s))
+        it('should return the number of matches chunks', () => expect(e.getCountMatchedChunks()).to.equal(2))
+        it('should return the relation of matched to contained chunks', () => expect(e.getMatchRelation()).to.equal(0.5))
+    })
+})
 
 describe('tools', () => {
     describe('splitter', () => {
