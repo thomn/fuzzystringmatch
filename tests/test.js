@@ -34,7 +34,7 @@ describe('tools', () => {
     })
 
     describe('identBuilder', () => {
-        it('should create an ident', () => expect(identBuilder('foo-bar " , - + bax/baz')).to.equal('baxbazfoobar'))
+        it('should create an ident', () => expect(identBuilder('foo-bar " , - + bax/baz')).to.equal('baxbaz foobar'))
     })
 })
 
