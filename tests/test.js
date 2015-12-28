@@ -12,13 +12,15 @@ describe('models', () => {
     describe('subject', () => {
         var s;
         before(() => {
-            s = new Subject('fooTerm')
+            s = new Subject('t/erm foo')
 
             s.addChunk('fooChunk')
             s.addChunk('barChunk')
         })
 
-        it('should return the term', () => expect(s.getTerm()).to.equal('fooTerm'))
+        it('should return the term', () => expect(s.getTerm()).to.equal('t/erm foo'))
+        it('should return the prepared term', () => expect(s.getTermPrepared()).to.equal('term foo'))
+        it('should return the prepared term ident', () => expect(s.getTermPreparedIdent()).to.equal('foo term'))
         it('should return the chunks', () => expect(s.getChunks()).to.deep.equal(['fooChunk', 'barChunk']))
     })
 
