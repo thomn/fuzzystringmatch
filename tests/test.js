@@ -28,13 +28,7 @@ describe('models', () => {
         var s, e;
         before(() => {
             s = new Subject('fooTerm')
-
-            s.addChunk('fooChunk')
-            s.addChunk('barChunk')
-            s.addChunk('spamChunk')
-            s.addChunk('cheeseChunk')
-
-            e = new ResultEntry(s, 2)
+            e = new ResultEntry(s, 2, 4)
         })
 
         it('should return the subject', () => expect(e.getSubject()).to.equal(s))
