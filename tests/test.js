@@ -12,13 +12,13 @@ describe('models', () => {
     describe('subject', () => {
         var s;
         before(() => {
-            s = new Subject('t/erm foo')
+            s = new Subject('term  #foo')
 
             s.addChunk('fooChunk')
             s.addChunk('barChunk')
         })
 
-        it('should return the term', () => expect(s.getTerm()).to.equal('t/erm foo'))
+        it('should return the term', () => expect(s.getTerm()).to.equal('term  #foo'))
         it('should return the prepared term', () => expect(s.getTermPrepared()).to.equal('term foo'))
         it('should return the prepared term ident', () => expect(s.getTermPreparedIdent()).to.equal('foo term'))
         it('should return the chunks', () => expect(s.getChunks()).to.deep.equal(['fooChunk', 'barChunk']))
@@ -61,11 +61,11 @@ describe('tools', () => {
     })
 
     describe('prepareTerm', () => {
-        it('should prepare', () => expect(prepareTerm('foo bar -;  # 123')).to.equal('foo bar 123'))
+        it('should prepare', () => expect(prepareTerm('foo bar-bax;   # 123')).to.equal('foo bar-bax 123'))
     })
 
     describe('identBuilder', () => {
-        it('should create an ident', () => expect(identBuilder('foo-bar " , - + bax/baz')).to.equal('baxbaz foobar'))
+        it('should create an ident', () => expect(identBuilder('foo-bar-bär-büx " , - + bax/baz')).to.equal('baxbaz foobarbaerbuex'))
     })
 })
 
