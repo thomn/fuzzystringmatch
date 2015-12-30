@@ -62,10 +62,15 @@ describe('tools', () => {
 
     describe('prepareTerm', () => {
         it('should prepare', () => expect(prepareTerm('foo bar-bax;   # 123')).to.equal('foo bar-bax 123'))
+        it('should prepare', () => expect(prepareTerm('Paiste 2002 18" crash')).to.equal('paiste 2002 18" crash'))
+        it('should prepare', () => expect(prepareTerm('Gallien Krüger NEO12-II-8')).to.equal('gallien krüger neo12-ii-8'))
     })
 
     describe('identBuilder', () => {
         it('should create an ident', () => expect(identBuilder('foo-bar-bär-büx " , - + bax/baz')).to.equal('baxbaz foobarbaerbuex'))
+        it('should create an ident', () => expect(identBuilder('Paiste 2002 18" crash')).to.equal('18 2002 crash paiste'))
+        it('should create an ident', () => expect(identBuilder('Paiste 18" crash 2002')).to.equal('18 2002 crash paiste'))
+        it('should create an ident', () => expect(identBuilder('Gallien Krüger NEO12-II-8')).to.equal('gallien krueger neo12ii8'))
     })
 })
 
