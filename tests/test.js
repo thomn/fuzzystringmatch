@@ -64,7 +64,7 @@ describe('tools', () => {
         it('should prepare', () => expect(prepareTerm('foo bar-bax;   # 123')).to.equal('foo bar-bax 123'))
     })
 
-    describe.only('identBuilder', () => {
+    describe('identBuilder', () => {
         it('should create an ident', () => expect(identBuilder('foo-bar-bär-büx " , - + bax/baz')).to.equal('baxbaz foobarbaerbuex'))
     })
 })
