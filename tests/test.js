@@ -19,7 +19,7 @@ describe('models', () => {
         })
 
         it('should return the term', () => expect(s.getTerm()).to.equal('term  #foo'))
-        it('should return the prepared term', () => expect(s.getTermPrepared()).to.equal('term foo'))
+        it('should return the prepared term', () => expect(s.getTermPrepared()).to.equal('term #foo'))
         it('should return the prepared term ident', () => expect(s.getTermPreparedIdent()).to.equal('foo term'))
         it('should return the chunks', () => expect(s.getChunks()).to.deep.equal(['fooChunk', 'barChunk']))
     })
@@ -61,16 +61,23 @@ describe('tools', () => {
     })
 
     describe('prepareTerm', () => {
-        it('should prepare', () => expect(prepareTerm('foo bar-bax;   # 123')).to.equal('foo bar-bax 123'))
-        it('should prepare', () => expect(prepareTerm('Paiste 2002 18" crash')).to.equal('paiste 2002 18" crash'))
-        it('should prepare', () => expect(prepareTerm('Gallien Krüger NEO12-II-8')).to.equal('gallien krüger neo12-ii-8'))
+        it('should trim', () => expect(prepareTerm(' foo ')).to.equal('foo'))
+        it('should replace commas', () => expect(prepareTerm('3,5mm 6,5mm')).to.equal('3.5mm 6.5mm'))
+        it('should remove encasing quotes', () => expect(prepareTerm('"gibson sg"')).to.equal('gibson sg'))
+        it('should remove encasing quotes', () => expect(prepareTerm('foo-bar-baz')).to.equal('foo bar baz'))
+        it('specialty', () => expect(prepareTerm('10\\\'\\\' 12\\\'\\\'')).to.equal('10" 12"'))
+        it('specialty', () => expect(prepareTerm('10\\\' 12\\\'')).to.equal('10" 12"'))
+        it('specialty', () => expect(prepareTerm('"10\\\' 12\\\'"')).to.equal('10" 12"'))
+        it('should replace multiple whitespaces', () => expect(prepareTerm(' asdf   asdf   asdf  ')).to.equal('asdf asdf asdf'))
+        it('should limit', () => expect(prepareTerm('foo bar bax ball baz bar spam eggs')).to.equal('foo bar bax ball baz bar'))
+        it('should limit', () => expect(prepareTerm('"19\\\' Kerope"')).to.equal('19" kerope'))
     })
 
     describe('identBuilder', () => {
-        it('should create an ident', () => expect(identBuilder('foo-bar-bär-büx " , - + bax/baz')).to.equal('baxbaz foobarbaerbuex'))
+        it('should create an ident', () => expect(identBuilder('foo-bar-bär-büx " , - + bax/baz')).to.equal('baer bar buex foo'))
         it('should create an ident', () => expect(identBuilder('Paiste 2002 18" crash')).to.equal('18 2002 crash paiste'))
         it('should create an ident', () => expect(identBuilder('Paiste 18" crash 2002')).to.equal('18 2002 crash paiste'))
-        it('should create an ident', () => expect(identBuilder('Gallien Krüger NEO12-II-8')).to.equal('gallien krueger neo12ii8'))
+        it('should create an ident', () => expect(identBuilder('Gallien Krüger NEO12-II-8')).to.equal('8 gallien ii krueger neo12'))
     })
 })
 
@@ -95,7 +102,8 @@ describe('streams', () => {
         })
 
         it('should split with a default chunk size of 2', () => expect(collection).to.deep.equal([
-            { foo: 'b+b a', bar: 81 },
+            { foo: 'b+b a', bar: 48 },
+            { foo: 'b-b a', bar: 33 },
             { foo: 'one', bar: 1 }
         ]))
     })
