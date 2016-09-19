@@ -11,12 +11,10 @@
   "dependencies": {
     "debug": "^2.2.0",
     "dedupe": "^1.0.2",
-    "hirestime": "^1.0.6",
-    "through2": "^2.0.0"
+    "hirestime": "^1.0.6"
   },
   "devDependencies": {
     "chai": "^3.4.1",
-    "matcha": "^0.6.1",
     "mocha": "^2.3.4"
   },
   "engines": {

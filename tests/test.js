@@ -5,8 +5,6 @@ var ResultEntry = require('../lib/ResultEntry')
 var identBuilder = require('../lib/tools/identBuilder')
 var splitter = require('../lib/tools/splitter')
 var prepareTerm = require('../lib/tools/prepareTerm')
-var dedupeStream = require('../lib/streams/dedupeStream')
-var cutStream = require('../lib/tools/cutstream')
 
 describe('models', () => {
     describe('subject', () => {
@@ -78,51 +76,5 @@ describe('tools', () => {
         it('should create an ident', () => expect(identBuilder('Paiste 2002 18" crash')).to.equal('18 2002 crash paiste'))
         it('should create an ident', () => expect(identBuilder('Paiste 18" crash 2002')).to.equal('18 2002 crash paiste'))
         it('should create an ident', () => expect(identBuilder('Gallien Krüger NEO12-II-8')).to.equal('8 gallien ii krueger neo12'))
-    })
-})
-
-describe('streams', () => {
-    describe('dedupe', () => {
-        var stream
-        var collection = []
-
-        before((done) => {
-            stream = dedupeStream('foo', 'bar')
-
-            stream.on('data', (data) => collection.push(data))
-            stream.on('end', done)
-
-            stream.write({foo: 'a bb', bar: 1})
-            stream.write({foo: 'bb a', bar: 3})
-            stream.write({foo: 'b+b a', bar: 44})
-            stream.write({foo: 'b-b a', bar: 33})
-            stream.write({foo: 'one', bar: 1})
-
-            stream.end()
-        })
-
-        it('should split with a default chunk size of 2', () => expect(collection).to.deep.equal([
-            { foo: 'b+b a', bar: 48 },
-            { foo: 'b-b a', bar: 33 },
-            { foo: 'one', bar: 1 }
-        ]))
-    })
-
-    describe('cutstream', () => {
-        var stream
-        var collection = []
-
-        before((done) => {
-            stream = cutStream(4)
-
-            stream.on('data', (data) => collection.push(data))
-            stream.on('end', done)
-
-            for(var i = 0; i < 10; i++) stream.write(i)
-
-            stream.end()
-        })
-
-        it('should cut', () => expect(collection).to.deep.equal([0, 1, 2]))
     })
 })
