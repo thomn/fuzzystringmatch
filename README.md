@@ -1,5 +1,5 @@
 # fuzzystringmatch
-fuzzystringmatch is a small library that creates a in memory index for a fast and fuzzy lookup of search terms.
+fuzzystringmatch is a small library that creates a in-memory index for a fast and fuzzy lookup of search terms.
 
 ## Example
 These country names have been put into the index:
