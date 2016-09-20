@@ -2,7 +2,7 @@
 fuzzystringmatch is a small library that creates a in-memory index for a fast and fuzzy lookup of search terms.
 
 ## Example
-These country names have been put into the index:
+The following country names have been put into the index:
 ````
 United States of America
 United Kingdom of Great Britain
@@ -23,12 +23,12 @@ npm install fuzzystringmatch
 fuzzystringmatch consists of 3 parts that work together:
 
 ### Subject
-Each Subject instance describes one index entry (e.g. one of the country names of the example above).
+Each Subject instance describes one index entry (e.g. one of the country names in the example above).
 ````javascript
 var mySubject = new Subject('United States of America')
 ````
 
-If you want to decorate the Subject with additional meta data (e.g. external ranking factory that will be used sort the list of entries),
+If you want to decorate the Subject with additional meta data (e.g. an external ranking factory that will be used to sort the list of entries),
 a child class of Subject can be created:
 
 ````javascript
@@ -51,13 +51,13 @@ var mySubject = new RankedSubject('Germany', 42)
 ### Digester
 The Digester is the instance that receives all the base data (e.g. the country names from the example above) and build up an index.
 
-The Digester can be supplied with raw string:
+The Digester can be supplied with a raw string:
 ````javascript
 var digester = new require('fuzzystringmatch').Digester()
 
 digester.feed('United States of America')
 ````
-or can be supplied with instances of Subject:
+or can be supplied with an instance of Subject:
 ````javascript
 var digester = new require('fuzzystringmatch').Digester()
 
@@ -77,7 +77,7 @@ console.log(matcher.match('jpan'))
 ````
 
 The result of the `match` call is a list of `ResultEntry` instances.
-Each of these entries represents a match regarding the search term. Each holds a reference to the subject from the index.
+Each `ResultEntry` represents a match regarding the search term and holds a reference to the subject from the index.
 
 ## Complete Example
 ````javascript
