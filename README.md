@@ -100,3 +100,40 @@ matcher
     })
 
 ````
+
+## API Reference
+
+### Digester
+
+#### constructor([configuration])
+Creates the Digester instance
+
+#### Digester.feed(term)
+Takes a search term that will be included into the index, can be a raw String or a `fuzzystringmatch.Subject` instance
+
+### Matcher
+
+#### constructor(digester[, configuration])
+Creates the Matcher instance, takes a digester that holds the index that should be searched.
+
+#### Matcher.match(term[, overallCount])
+Matches a certain search term against the index.
+* *term*: the raw string that should be searched
+* *overallCount*: defines the maximum number of result entries, optional, defaults to 150
+
+### Subject
+
+#### cunstructor(term)
+Creates the Subject instance, takes the term that should be represented by the Subject
+
+#### Subject.getTerm()
+Returns the term that is represented
+
+### ResultEntry
+
+#### ResultEntry.getSubject()
+Returns the Subject the ResultEntry is in relation with
+
+#### ResultEntry.getMatchRelation
+Returns the relation between the number of matched chunks and the number of searched chunks.
+Acts as a quality factor for the search result.
