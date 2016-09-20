@@ -1,7 +1,7 @@
 {
   "name": "fuzzystringmatch",
   "version": "1.1.0",
-  "description": "",
+  "description": "a small library that creates a in-memory index for a fast and fuzzy lookup of search terms",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests"
