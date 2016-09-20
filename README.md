@@ -25,7 +25,7 @@ fuzzystringmatch consists of 3 parts that work together:
 ### Subject
 Each Subject instance describes one index entry (e.g. one of the country names of the example above).
 ````javascript
-var mySubject = new Subject('United States of America)
+var mySubject = new Subject('United States of America')
 ````
 
 If you want to decorate the Subject with additional meta data (e.g. external ranking factory that will be used sort the list of entries),
