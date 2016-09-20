@@ -109,7 +109,7 @@ matcher
 Creates the Digester instance
 
 #### Digester.feed(term)
-Takes a search term that will be included into the index, can be a raw String or a `fuzzystringmatch.Subject` instance
+Takes a search term that will be included into the index, can be a raw String or a Subject instance
 
 ### Matcher
 
@@ -123,7 +123,7 @@ Matches a certain search term against the index.
 
 ### Subject
 
-#### cunstructor(term)
+#### constructor(term)
 Creates the Subject instance, takes the term that should be represented by the Subject
 
 #### Subject.getTerm()
@@ -134,6 +134,6 @@ Returns the term that is represented
 #### ResultEntry.getSubject()
 Returns the Subject the ResultEntry is in relation with
 
-#### ResultEntry.getMatchRelation
+#### ResultEntry.getMatchRelation()
 Returns the relation between the number of matched chunks and the number of searched chunks.
 Acts as a quality factor for the search result.
