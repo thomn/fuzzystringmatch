@@ -9,4 +9,9 @@ digester.feed('Germany')
 digester.feed('France')
 digester.feed('Japan')
 
-console.log(matcher.match('Unted'))
+matcher
+    .match('grmnany')
+    .forEach((resultEntry) => {
+        var subject = resultEntry.getSubject()
+        console.log(`${subject.getTerm()}, Matchscore: ${resultEntry.getMatchRelation()}`)
+    })

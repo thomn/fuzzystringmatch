@@ -45,7 +45,7 @@ class RankedSubject extends Subject {
     }
 }
 
-var mySubject = new RankedSubject('Germany', 42))
+var mySubject = new RankedSubject('Germany', 42)
 ````
 
 ### Digester
@@ -78,3 +78,26 @@ console.log(matcher.match('jpan'))
 
 The result of the `match` call is a list of `ResultEntry` instances.
 Each of these entries represents a match regarding the search term. Each holds a reference to the subject from the index.
+
+## Complete Example
+
+````
+var fuzzyStringmatch = require('fuzzystringmatch')
+
+var digester = new fuzzyStringmatch.Digester
+var matcher = new fuzzyStringmatch.Matcher(digester)
+
+digester.feed('United States of America')
+digester.feed(new fuzzyStringmatch.Subject('United Kingdom of Great Britain'))
+digester.feed('Germany')
+digester.feed('France')
+digester.feed('Japan')
+
+matcher
+    .match('grmany')
+    .forEach((resultEntry) => {
+        var subject = resultEntry.getSubject()
+        console.log(`${subject.getTerm()}, Matchscore: ${resultEntry.getMatchRelation()}`)
+    })
+
+````
