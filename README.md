@@ -12,7 +12,7 @@ Japan
 ````
 
 When searching for the term `Unted`, the entries `United States of America` and `United Kingdom of Great Britain` will be returned.
-(see the [example section](https://www.github.com/cookiefactory/fuzzystringmatch/example))
+(see the [example section](https://github.com/cookiefactory/fuzzystringmatch/tree/master/example))
 
 ## Installation
 ````
