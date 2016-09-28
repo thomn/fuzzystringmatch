@@ -1,6 +1,8 @@
 # fuzzystringmatch
 fuzzystringmatch is a small library that creates a in-memory index for a fast and fuzzy lookup of search terms.
 
+Runs in the browser as well as in node.js.
+
 ## Example
 The following country names have been put into the index:
 ````
