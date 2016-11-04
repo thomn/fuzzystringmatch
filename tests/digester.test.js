@@ -11,10 +11,13 @@ describe('Digester', () => {
 
         digester.feed('foo')
         digester.feed(new Subject('food'))
+        digester.feed('FoaR')
     })
 
     it('should build an index', () => expect(indexToObject(digester.getIndex())).to.deep.equal({
-        fo: ['foo', 'food'],
+        ar: ['FoaR'],
+        fo: ['foo', 'food', 'FoaR'],
+        oa: ['FoaR'],
         oo: ['foo', 'food'],
         od: ['food']
     }))
