@@ -13,5 +13,5 @@ matcher
     .match('gemranzy')
     .forEach((resultEntry) => {
         var subject = resultEntry.getSubject()
-        console.log(`${subject.getTerm()}, Matchscore: ${resultEntry.getMatchRelation()}, resamblance: ${resultEntry.getResamblance()}`)
+        console.log(`${subject.getTerm()}, Matchscore: ${resultEntry.getMatchRelation()}, resemblance: ${resultEntry.getResemblance()}`)
     })
