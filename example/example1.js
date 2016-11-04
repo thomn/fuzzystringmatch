@@ -7,11 +7,11 @@ digester.feed('United States of America')
 digester.feed(new fuzzyStringmatch.Subject('United Kingdom of Great Britain'))
 digester.feed('Germany')
 digester.feed('France')
-digester.feed('Japan')
+digester.feed('berthold')
 
 matcher
-    .match('grmnany')
+    .match('gemranzy')
     .forEach((resultEntry) => {
         var subject = resultEntry.getSubject()
-        console.log(`${subject.getTerm()}, Matchscore: ${resultEntry.getMatchRelation()}`)
+        console.log(`${subject.getTerm()}, Matchscore: ${resultEntry.getMatchRelation()}, resamblance: ${resultEntry.getResamblance()}`)
     })
