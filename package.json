@@ -1,6 +1,6 @@
 {
   "name": "fuzzystringmatch",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "a small library that creates a in-memory index for a fast and fuzzy lookup of search terms",
   "keywords": [
     "string matching",
