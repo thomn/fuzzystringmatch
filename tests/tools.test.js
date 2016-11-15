@@ -25,6 +25,13 @@ describe('tools', () => {
             var splitted = splitter('paiste 18 crash', {size: 3, whitespaces: splitter.WHITESPACES_RESPECT})
             expect(splitted).to.deep.equal(['pai', 'ais', 'ist', 'ste', '18', 'cra', 'ras', 'ash'])
         })
+
+        describe('custom splitter', () => {
+            it('should split at the word boundaries', () => {
+                var splitted = splitter('paiste 18" crash', {custom: identifier => identifier.trim().split(' ')})
+                expect(splitted).to.deep.equal(['paiste', '18"', 'crash'])
+            })
+        })
     })
 
     describe('prepareTerm', () => {
