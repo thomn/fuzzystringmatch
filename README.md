@@ -25,13 +25,13 @@ npm install fuzzystringmatch
 fuzzystringmatch consists of 3 parts that work together:
 
 ### Subject
-Each Subject instance describes one index entry (e.g. one of the country names in the example above).
+Each `Subject` instance describes one index entry (e.g. one of the country names in the example above).
 ````javascript
 var mySubject = new require('fuzzystringmatch').Subject('United States of America')
 ````
 
-If you want to decorate the Subject with additional meta data (e.g. an external ranking factory that will be used to sort the list of entries),
-a child class of Subject can be created:
+If you want to decorate the `Subject` with additional meta data (e.g. an external ranking factory that will be used to sort the list of entries),
+a child class of `Subject` can be created:
 
 ````javascript
 var Subject = require('fuzzystringmatch').Subject
@@ -59,7 +59,7 @@ var digester = new require('fuzzystringmatch').Digester()
 
 digester.feed('United States of America')
 ````
-or can be supplied with an instance of Subject:
+or can be supplied with an instance of `Subject`:
 ````javascript
 var digester = new require('fuzzystringmatch').Digester()
 
@@ -79,7 +79,7 @@ console.log(matcher.match('jpan'))
 ````
 
 The result of the `match` call is a list of `ResultEntry` instances.
-Each `ResultEntry` represents a match regarding the search term and holds a reference to the subject from the index.
+Each `ResultEntry` represents a match regarding the search term and holds a reference to the `Subject` from the index.
 
 ## Complete Example
 ````javascript
@@ -111,7 +111,7 @@ matcher
 Creates the Digester instance
 
 #### Digester.feed(term)
-Takes a search term that will be included into the index, can be a raw String or a Subject instance
+Takes a search term that will be included into the index, can be a raw String or a `Subject` instance
 
 ### Matcher
 
@@ -126,7 +126,7 @@ Matches a certain search term against the index.
 ### Subject
 
 #### constructor(term)
-Creates the Subject instance, takes the term that should be represented by the Subject
+Creates the `Subject` instance, takes the term that should be represented by the `Subject`
 
 #### Subject.getTerm()
 Returns the term that is represented
@@ -134,7 +134,7 @@ Returns the term that is represented
 ### ResultEntry
 
 #### ResultEntry.getSubject()
-Returns the Subject the ResultEntry is in relation with
+Returns the `Subject` the ResultEntry is in relation with
 
 #### ResultEntry.getMatchRelation()
 Returns the relation between the number of matched chunks and the number of searched chunks.
