@@ -96,7 +96,7 @@ digester.feed('Japan')
 
 matcher
     .match('grmany')
-    .forEach((resultEntry) => {
+    .forEach(resultEntry => {
         var subject = resultEntry.getSubject()
         console.log(`${subject.getTerm()}, Matchscore: ${resultEntry.getMatchRelation()}`)
     })
@@ -134,7 +134,7 @@ Returns the term that is represented
 ### ResultEntry
 
 #### ResultEntry.getSubject()
-Returns the `Subject` the ResultEntry is in relation with
+Returns the `Subject` the `ResultEntry` is in relation with
 
 #### ResultEntry.getMatchRelation()
 Returns the relation between the number of matched chunks and the number of searched chunks.
