@@ -1,7 +1,5 @@
 var fuzzyStringmatch = require('../')
 
-var splitter = fuzzyStringmatch.tools.splitter
-
 var config = {
     splitter: {
         custom: ident => ident.trim().split(' ')
@@ -16,8 +14,6 @@ digester.feed(new fuzzyStringmatch.Subject('United Kingdom of Great Britain'))
 digester.feed('Germany')
 digester.feed('France')
 digester.feed('Japan')
-
-console.log(digester)
 
 matcher
     .match('united kingdom of the america and great germany')
