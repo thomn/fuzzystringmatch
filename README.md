@@ -103,12 +103,45 @@ matcher
 
 ````
 
+## Configuration
+
+By default the digester and the matcher are configured with a reasonable set of values.
+If you're running into performance or accuracy issues, there's the possibility to finetune certain aspects 
+by supplying a additional, optional configuration.
+
+*Example:*
+````
+var splitter = require('fuzzystringmatch').tools.splitter
+
+var config = {
+    splitter: {
+        size: 2,                                    //defines how big the chunks of a string should be
+                                                    //chosse small for accuracy and big for performance
+        whitespaces: splitter.WHITESPACES_RESPECT   //defines how whitespaces should be treated by the splitter instance
+                                                    //possible values:
+                                                    //splitter.WHITESPACES_RESPECT: whitespaces are retained
+                                                    //splitter.WHITESPACES_SQUASH:  whitespaces are treated as non existant
+    }
+}
+````
+
+There is also so the possibility to supply a custom splitter (see the example directory):
+````
+var config = {
+    splitter: {
+        custom: term => term.split(' ')
+    }
+}
+````
+A custom splitter is a simple function that accepts a string has to return a array of strings.
+
 ## API Reference
 
 ### Digester
 
 #### constructor([configuration])
 Creates the Digester instance
+* *configuration*: a configuration for finetuning the string analyzation (see `Configuration` above), optional
 
 #### Digester.feed(term)
 Takes a search term that will be included into the index, can be a raw String or a `Subject` instance
@@ -116,7 +149,9 @@ Takes a search term that will be included into the index, can be a raw String or
 ### Matcher
 
 #### constructor(digester[, configuration])
-Creates the Matcher instance, takes a digester that holds the index that should be searched.
+Creates the Matcher instance
+* *digester*: a digester that holds the index that should be searched
+* *configuration*: a configuration for finetuning the string analyzation (see `Configuration` above), optional
 
 #### Matcher.match(term[, overallCount])
 Matches a certain search term against the index.
