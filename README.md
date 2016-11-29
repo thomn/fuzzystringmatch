@@ -109,7 +109,6 @@ By default the digester and the matcher are configured with a reasonable set of 
 If you're running into performance or accuracy issues, there's the possibility to finetune certain aspects 
 by supplying a additional, optional configuration.
 
-*Example:*
 ````
 var splitter = require('fuzzystringmatch').tools.splitter
 
@@ -133,7 +132,7 @@ var config = {
     }
 }
 ````
-A custom splitter is a simple function that accepts a string has to return a array of strings.
+A custom splitter is a simple function that accepts a string and has to return an array of strings.
 
 ## API Reference
 
